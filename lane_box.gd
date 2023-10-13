@@ -37,4 +37,3 @@ func _on_add_ship_pressed():
 	lane.ships += 1
 	var new_ship = ship.instantiate()
 	lane.get_child(0).add_child(new_ship)
-	print(lane.get_child(0))

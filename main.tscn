@@ -12,6 +12,7 @@ lane_box = ExtResource("2_2swyk")
 lane = ExtResource("5_pnn0m")
 
 [node name="Earth" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
+position = Vector2(454, 228)
 planetName = "Earth"
 planetSize = 3
 passengers = {
@@ -25,7 +26,7 @@ position = Vector2(576, 325)
 script = ExtResource("2_b0krl")
 
 [node name="Mars" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
-position = Vector2(-721, -715)
+position = Vector2(-211, -136)
 planetName = "Mars"
 planetSize = 1
 passengers = {
@@ -33,9 +34,14 @@ passengers = {
 }
 
 [node name="Neptune" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
-position = Vector2(595, -1226)
+position = Vector2(1755, -281)
 planetName = "Neptune"
 planetSize = 1
 passengers = {
 "mars": 8
 }
+
+[node name="jkjkjkjk" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
+position = Vector2(3743, 3305)
+planetName = "jkjkjkjk"
+planetSize = 2
