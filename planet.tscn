@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjqx2ubiu4wtm"]
+
+[ext_resource type="Texture2D" uid="uid://csqnwemss485y" path="res://Earth.png" id="1_8c4pb"]
+[ext_resource type="Script" path="res://planet.gd" id="1_jdvtj"]
+[ext_resource type="PackedScene" uid="uid://dfjleyhhfg0oh" path="res://info_box.tscn" id="3_t4b3f"]
+
+[node name="Planet" type="Node2D"]
+script = ExtResource("1_jdvtj")
+
+[node name="Earth" type="Sprite2D" parent="."]
+scale = Vector2(4.927, 5)
+texture = ExtResource("1_8c4pb")
+
+[node name="Control" type="Control" parent="Earth"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -14.3767
+offset_top = -14.8125
+offset_right = 15.6233
+offset_bottom = 15.1875
+
+[node name="InfoBox" parent="." instance=ExtResource("3_t4b3f")]
+visible = false
+position = Vector2(122, 70)
+
+[connection signal="gui_input" from="Earth/Control" to="." method="_on_control_gui_input"]

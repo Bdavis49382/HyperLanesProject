@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdt7vdwq7j6jx"]
+
+[ext_resource type="PackedScene" uid="uid://bjqx2ubiu4wtm" path="res://planet.tscn" id="1_3sbwt"]
+[ext_resource type="Script" path="res://main.gd" id="1_p26hy"]
+[ext_resource type="PackedScene" uid="uid://cwj1d5gelkt46" path="res://lane_box.tscn" id="2_2swyk"]
+[ext_resource type="Script" path="res://Camera.gd" id="2_b0krl"]
+[ext_resource type="PackedScene" uid="uid://csub8xecu5ec0" path="res://lane.tscn" id="5_pnn0m"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_p26hy")
+lane_box = ExtResource("2_2swyk")
+lane = ExtResource("5_pnn0m")
+
+[node name="Earth" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
+planetName = "Earth"
+planetSize = 3
+passengers = {
+"Jupiter": 5,
+"Mars": 2,
+"Neptune": 17
+}
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 325)
+script = ExtResource("2_b0krl")
+
+[node name="Mars" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
+position = Vector2(-721, -715)
+planetName = "Mars"
+planetSize = 1
+passengers = {
+"Earth": 2
+}
+
+[node name="Neptune" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
+position = Vector2(595, -1226)
+planetName = "Neptune"
+planetSize = 1
+passengers = {
+"mars": 8
+}
