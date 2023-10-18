@@ -11,14 +11,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for lane_path in $Path2D.get_children():
-		# var lanePath = $Path2D.get_child(i)
-		if lane_path.progress_ratio < .55 and lane_path.progress_ratio > .45:
-			print('halfway')
-		if lane_path.progress_ratio > 1:
-			lane_path.progress_ratio = 0
-		else:
-			lane_path.progress += speed
+	for ship in $Path2D.get_children():
+		ship.move(speed)
 
 func _draw():
 	var par = get_parent()

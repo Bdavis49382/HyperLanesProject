@@ -3,9 +3,12 @@ signal create
 
 var lane
 @export var ship : PackedScene
+var planet1
+var planet2
+var econ
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	econ = get_node("/root/Main/Economy")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,7 +19,8 @@ func _process(delta):
 
 
 func _on_create_pressed():
-	create.emit()
+	if econ.buy_route(planet1,planet2):
+		create.emit()
 
 func created(lane_node):
 	lane = lane_node
@@ -29,11 +33,13 @@ func created(lane_node):
 
 
 func _on_upgrade_pressed():
-	lane.speed *= 2
-	lane.level += 1
+	if econ.buy_route(planet1,planet2):
+		lane.speed *= 2
+		lane.level += 1
 
 
 func _on_add_ship_pressed():
-	lane.ships += 1
-	var new_ship = ship.instantiate()
-	lane.get_child(0).add_child(new_ship)
+	if econ.buy_ship(lane.ships):
+		lane.ships += 1
+		var new_ship = ship.instantiate()
+		lane.get_child(0).add_child(new_ship)

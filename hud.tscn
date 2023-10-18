@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bctb66s476k8l"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Money" type="Label" parent="."]
+offset_right = 194.0
+offset_bottom = 149.0
+theme_override_font_sizes/font_size = 35
+text = "$1000"

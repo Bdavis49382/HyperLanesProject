@@ -24,6 +24,8 @@ func _process(delta):
 			midpoint.x = (clicked_planets[0].position.x + clicked_planets[1].position.x)/2
 			midpoint.y = (clicked_planets[0].position.y + clicked_planets[1].position.y)/2
 			lane_boxes[key_string].position = midpoint	
+			lane_boxes[key_string].planet1 = clicked_planets[0]
+			lane_boxes[key_string].planet2 = clicked_planets[1]
 			add_child(lane_boxes[key_string])
 			lane_boxes[key_string].connect("create",self._on_create)
 		else:
@@ -37,7 +39,6 @@ func _process(delta):
 
 func _on_create():
 	var clicked_planets = get_tree().get_nodes_in_group("planets").filter(func(planet):return planet.is_clicked)
-	# $Lane.lanes.append([ clicked_planets[0].position,clicked_planets[1].position ])
 	lanes.append([clicked_planets[0].position,clicked_planets[1].position])
 	var this_lane = lane.instantiate()
 	this_lane.lane_name = clicked_planets[0].planetName + "-" + clicked_planets[1].planetName

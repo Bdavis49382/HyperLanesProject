@@ -15,6 +15,6 @@ func _process(delta):
 		var space = ""
 		for i in range(spaceNum):
 			space += " "
-		passengers_str += place + space + str(passengers[place]) + ("\n" if count % 2 == 1 else "       	")
+		passengers_str += place + space + str(len(passengers[place])) + ("\n" if count % 2 == 1 else "       	")
 		count += 1
 	$Passengers.text = passengers_str
