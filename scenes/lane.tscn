@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://csub8xecu5ec0"]
+
+[ext_resource type="Script" path="res://Scripts/lane.gd" id="1_frsp2"]
+[ext_resource type="PackedScene" uid="uid://op16odggol8a" path="res://scenes/line.tscn" id="2_uu8ql"]
+[ext_resource type="PackedScene" uid="uid://dh4hdamerjb6p" path="res://scenes/ship.tscn" id="2_y8bdy"]
+[ext_resource type="PackedScene" uid="uid://cwj1d5gelkt46" path="res://scenes/lane_box.tscn" id="4_14jqm"]
+
+[sub_resource type="Curve2D" id="Curve2D_3xjuk"]
+
+[node name="Lane" type="Node2D"]
+script = ExtResource("1_frsp2")
+ship_scene = ExtResource("2_y8bdy")
+line = ExtResource("2_uu8ql")
+
+[node name="LaneBox" parent="." instance=ExtResource("4_14jqm")]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3xjuk")
+
+[connection signal="add_ship" from="LaneBox" to="." method="_on_lane_box_add_ship"]
+[connection signal="create" from="LaneBox" to="." method="_on_lane_box_create"]
+[connection signal="upgrade" from="LaneBox" to="." method="_on_lane_box_upgrade"]
