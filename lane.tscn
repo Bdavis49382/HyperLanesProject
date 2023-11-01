@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://csub8xecu5ec0"]
+
+[ext_resource type="Script" path="res://lane.gd" id="1_frsp2"]
+[ext_resource type="PackedScene" uid="uid://dh4hdamerjb6p" path="res://ship.tscn" id="2_y8bdy"]
+
+[sub_resource type="Curve2D" id="Curve2D_3xjuk"]
+
+[node name="Lane" type="Node2D"]
+script = ExtResource("1_frsp2")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3xjuk")
+
+[node name="Ship" parent="Path2D" instance=ExtResource("2_y8bdy")]

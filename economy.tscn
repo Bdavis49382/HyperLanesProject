@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfycsbay3v70v"]
 
-[ext_resource type="Script" path="res://Scripts/economy.gd" id="1_ny3am"]
+[ext_resource type="Script" path="res://economy.gd" id="1_ny3am"]
 
 [node name="Economy" type="Node"]
 script = ExtResource("1_ny3am")

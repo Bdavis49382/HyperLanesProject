@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwj1d5gelkt46"]
 
-[ext_resource type="Script" path="res://Scripts/lane_box.gd" id="1_ctpg1"]
-[ext_resource type="PackedScene" uid="uid://dh4hdamerjb6p" path="res://scenes/ship.tscn" id="2_rpv17"]
+[ext_resource type="Script" path="res://lane_box.gd" id="1_ctpg1"]
+[ext_resource type="PackedScene" uid="uid://dh4hdamerjb6p" path="res://ship.tscn" id="2_rpv17"]
 
 [node name="LaneBox" type="Node2D"]
 script = ExtResource("1_ctpg1")
@@ -28,7 +28,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
 
 [node name="Ships" type="Label" parent="."]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -46,7 +45,6 @@ text = "
 "
 
 [node name="Level" type="Label" parent="."]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
