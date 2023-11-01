@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdt7vdwq7j6jx"]
+
+[ext_resource type="PackedScene" uid="uid://bjqx2ubiu4wtm" path="res://scenes/planet.tscn" id="1_3sbwt"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_p26hy"]
+[ext_resource type="PackedScene" uid="uid://cwj1d5gelkt46" path="res://scenes/lane_box.tscn" id="2_2swyk"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="2_b0krl"]
+[ext_resource type="PackedScene" uid="uid://csub8xecu5ec0" path="res://scenes/lane.tscn" id="5_pnn0m"]
+[ext_resource type="PackedScene" uid="uid://bctb66s476k8l" path="res://scenes/hud.tscn" id="6_ny6xt"]
+[ext_resource type="PackedScene" uid="uid://bfycsbay3v70v" path="res://scenes/economy.tscn" id="6_rfoa1"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_p26hy")
+lane_box = ExtResource("2_2swyk")
+lane = ExtResource("5_pnn0m")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 325)
+script = ExtResource("2_b0krl")
+
+[node name="HUD" parent="Camera" instance=ExtResource("6_ny6xt")]
+
+[node name="Earth" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
+position = Vector2(454, 228)
+planetName = "Earth"
+planetSize = 3
+
+[node name="Mars" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
+position = Vector2(-211, -136)
+planetName = "Mars"
+planetSize = 1
+
+[node name="Neptune" parent="." groups=["planets"] instance=ExtResource("1_3sbwt")]
+position = Vector2(2924, -767)
+planetName = "Neptune"
+planetSize = 1
+
+[node name="Economy" parent="." instance=ExtResource("6_rfoa1")]

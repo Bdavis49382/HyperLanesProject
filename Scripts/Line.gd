@@ -10,3 +10,8 @@ func _ready():
 func _process(delta):
 	pass
 
+func _draw():
+	if get_parent().planet1:
+		draw_line(get_parent().planet1.position,get_parent().planet2.position,Color(255,255,255),20)
+	else:
+		print('error drawing line')

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfjleyhhfg0oh"]
 
-[ext_resource type="Script" path="res://info_box.gd" id="1_vpge3"]
+[ext_resource type="Script" path="res://Scripts/info_box.gd" id="1_vpge3"]
 
 [node name="InfoBox" type="Node2D"]
 script = ExtResource("1_vpge3")
