@@ -15,6 +15,12 @@ func _ready():
 func _process(delta):
 	$InfoBox.scale = box_scale
 
+func get_num_passengers():
+	var total = 0
+	for value in passengers.values():
+		total += len(value)
+	return total
+
 func _on_control_gui_input(event):
 	if event.is_action('click') and event.button_mask == 1:
 		$InfoBox.visible = !$InfoBox.visible

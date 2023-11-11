@@ -25,11 +25,13 @@ func _process(delta):
 
 func _on_lane_box_create():
 	planet1.connected_planets.append(planet2)
+	planet2.connected_planets.append(planet1)
 	var curve = Curve2D.new()
 	curve.add_point(planet1.position)
 	curve.add_point(planet2.position)
 	curve.add_point(planet1.position)
 	$Path2D.set_curve(curve)
+	econ.refresh_passengers()
 	add_ship()
 	add_child(line.instantiate())
 

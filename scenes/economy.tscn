@@ -5,8 +5,13 @@
 [node name="Economy" type="Node"]
 script = ExtResource("1_ny3am")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="PassengerTimer" type="Timer" parent="."]
 wait_time = 0.47
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="timeout" from="PassengerTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
