@@ -17,6 +17,8 @@ func _process(delta):
 	if $Ships.visible:
 		$Ships.text = "Ships: " + str(ships)
 		$Level.text = "Level: " + str(level)
+	else:
+		$Create.text = "Create Route\nCost: " + str(econ.calc_route_cost(get_parent().planet1,get_parent().planet2))
 
 
 func _on_create_pressed():

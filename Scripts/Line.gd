@@ -12,6 +12,6 @@ func _process(delta):
 
 func _draw():
 	if get_parent().planet1:
-		draw_line(get_parent().planet1.position,get_parent().planet2.position,Color(255,255,255),20)
+		draw_line(get_parent().planet1.position,get_parent().planet2.position,Color(.2,.2,.2),5)
 	else:
 		print('error drawing line')

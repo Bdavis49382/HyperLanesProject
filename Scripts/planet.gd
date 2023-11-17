@@ -35,5 +35,5 @@ func accept_passengers(new_passengers):
 	for passenger_list in new_passengers.values():
 		for passenger in passenger_list:	
 			if not econ.add_passenger(self,passenger):
-				econ.earn_income(floor(passenger[1]/50))
+				econ.earn_income(floor(passenger[1]/40))
 

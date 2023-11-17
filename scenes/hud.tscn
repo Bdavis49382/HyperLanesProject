@@ -20,11 +20,12 @@ offset_right = 2196.0
 offset_bottom = 130.0
 theme_override_font_sizes/font_size = 45
 text = "Everything is running smoothly"
+autowrap_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="Message"]
 layout_mode = 0
 offset_left = 4.0
 offset_top = -1.0
 offset_right = 680.0
-offset_bottom = 76.0
+offset_bottom = 201.0
 color = Color(0.419608, 0.419608, 0.419608, 0.494118)

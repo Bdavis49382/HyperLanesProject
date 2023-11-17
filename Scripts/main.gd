@@ -6,8 +6,7 @@ var lanes = {}
 var most_recent_lane = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -20,9 +19,9 @@ func _process(delta):
 			lanes[key_string] = lane.instantiate()
 			lanes[key_string].get_child(0).get_child(1).text = key_string
 			var midpoint = Vector2.ZERO
-			midpoint.x = (clicked_planets[0].position.x + clicked_planets[1].position.x)/2
-			midpoint.y = (clicked_planets[0].position.y + clicked_planets[1].position.y)/2
-			lanes[key_string].get_node("LaneBox").position = midpoint	
+			midpoint.x = (clicked_planets[0].position.x + clicked_planets[1].position.x)/2 + 50
+			midpoint.y = (clicked_planets[0].position.y + clicked_planets[1].position.y)/2 + 50
+			lanes[key_string].get_node("LaneBox").position = midpoint
 			lanes[key_string].planet1 = clicked_planets[0]
 			lanes[key_string].planet2 = clicked_planets[1]
 			add_child(lanes[key_string])

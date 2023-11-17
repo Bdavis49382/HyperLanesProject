@@ -5,11 +5,13 @@ var planet1
 var planet2
 var passengers = {}
 var capacity = 15
+var red = false
 var at_planet2 = false
 var at_planet1 = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+	z_index = 100
 
 func get_num_passengers():
 	var total = 0
@@ -35,10 +37,6 @@ func move(speed):
 func pick_up_all(planet):
 	var destinations = planet.passengers.keys()
 	for destination in destinations:
-		# If a passenger going to this destination has a route, pick them all up
-		# print(planet.passengers[destination][0][2])
-		# if len(planet.passengers[destination][0][2]) == 0:
-		# 	print()
 		if len(planet.passengers[destination][0][2]) > 1 and planet.passengers[destination][0][2][1] in [planet2,planet1] and get_num_passengers() < capacity:
 			pick_up(planet,destination)
 
@@ -58,4 +56,26 @@ func drop_off(planet):
 	passengers.clear()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	# Keep the sprite pointed the right way.
+	if progress_ratio < .55:
+		$Sprite2D.look_at(planet1.position)
+	else:
+		$Sprite2D.look_at(planet2.position)
+	
+	# Update progress bar showing capacity
+	var percentage = get_num_passengers() * 100 / capacity
+	$ProgressBar.value = percentage
+	if percentage > 90 and not red:
+		red = true
+		
+	if red and percentage < 90:
+		red = false
+
+	if red:
+		$ProgressBar.add_theme_color_override("font_color",Color(1,0,0))
+	
+	
+	# $ProgressBar.theme.font_color = Color(1,0,0)
+
+
+

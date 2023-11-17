@@ -19,7 +19,7 @@ script = ExtResource("8_4rnif")
 Planet = ExtResource("1_3sbwt")
 
 [node name="planetSpawnTimer" type="Timer" parent="planetFactory"]
-wait_time = 45.0
+wait_time = 30.0
 autostart = true
 
 [node name="Economy" parent="." instance=ExtResource("6_rfoa1")]
@@ -31,4 +31,5 @@ script = ExtResource("2_b0krl")
 [node name="HUD" parent="Camera" instance=ExtResource("6_ny6xt")]
 layer = -1
 
+[connection signal="planet_created" from="planetFactory" to="Economy" method="_on_planet_factory_planet_created"]
 [connection signal="timeout" from="planetFactory/planetSpawnTimer" to="planetFactory" method="_on_planet_spawn_timer_timeout"]

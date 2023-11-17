@@ -33,3 +33,7 @@ func _process(delta):
 			zoom_velocity.y += zoom_map[key][1]
 	zoom += zoom_velocity * delta * _zoom_speed
 	zoom = zoom.clamp(Vector2(.1,.1),Vector2(3,3))
+
+
+func _on_planet_factory_planet_created():
+	pass # Replace with function body.

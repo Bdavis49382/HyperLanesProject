@@ -1,4 +1,5 @@
 extends Node
+signal planet_created
 
 @export var Planet : PackedScene
 var zones = [[0,0]]
@@ -11,11 +12,7 @@ func _ready():
 	econ = get_node("/root/Main/Economy")
 	create_planet("Earth",[0,0])
 	create_random_planet(zones[0])
-	# create_planet("Pluto",[0,0],500)
-	# create_planet("Earth",[0,0],500)
-	# create_planet("Mars",[0,0],500)
-	# create_planet("Neptune",[1000,1000],500)
-	# create_planet("Europa",[2500,2500],500)
+	create_random_planet(zones[0])
 
 	
 
@@ -59,6 +56,7 @@ func create_planet(planet_name,position):
 	new_planet.position = Vector2(position[0],position[1])
 	new_planet.add_to_group("planets")
 	add_child(new_planet)
+	planet_created.emit(planet_name)
 
 func create_zone():
 	var prev_zone = zones[current_zone]

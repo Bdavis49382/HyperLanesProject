@@ -6,11 +6,11 @@
 script = ExtResource("1_ny3am")
 
 [node name="PassengerTimer" type="Timer" parent="."]
-wait_time = 0.47
+wait_time = 3.0
 autostart = true
 
 [node name="DeathTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 30.0
 one_shot = true
 
 [connection signal="timeout" from="PassengerTimer" to="." method="_on_timer_timeout"]

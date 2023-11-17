@@ -1,6 +1,7 @@
 extends Node
 
-var money = 10000
+var money = 2000
+var shown_planet_name = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,7 +18,12 @@ func _process(delta):
 	else:
 		if not $DeathTimer.is_stopped():
 			$DeathTimer.stop()
+		# print(shown_planet_name)
+		if shown_planet_name == '':
 			get_node("../Camera/HUD/Message").text = "Everything is running smoothly"
+		else:
+			get_node("../Camera/HUD/Message").text = shown_planet_name + " built a space port!"
+
 
 
 func rand_choice(arr):
@@ -26,6 +32,14 @@ func rand_choice(arr):
 func buy_route(planet1,planet2):
 	"""Returns false if unable to buy, true if buy was successful"""
 	var cost = calc_route_cost(planet1,planet2)
+	if cost > money:
+		return false
+	else:
+		money -= cost
+		return true
+
+func upgrade_route(planet1,planet2,level):
+	var cost = calc_upgrade_cost(planet1,planet2,level)
 	if cost > money:
 		return false
 	else:
@@ -49,7 +63,7 @@ func refresh_passengers():
 
 func calc_route_cost(planet1,planet2):
 	var dist = calc_distance(planet1.position,planet2.position)
-	return int(dist * 1.75)
+	return int(dist * 1.25)
 
 func calc_distance(point1,point2):
 	return sqrt((point2.x - point1.x)**2 + (point2.y - point1.y)**2)
@@ -59,6 +73,9 @@ func earn_income(amount):
 
 func calc_ship_cost(ships):
 	return 100 * ships**2 + 300
+
+func calc_upgrade_cost(planet1,planet2,level):
+	return calc_route_cost(planet1,planet2)/2 * level
 
 func buy_ship(ships):
 	"""Returns false if unable to buy, true if buy worked"""
@@ -83,7 +100,9 @@ func _on_timer_timeout():
 	var planets = get_tree().get_nodes_in_group("planets")
 	# var planetNames = planets.map(func(planet):return planet.planetName)
 	# add_passenger(rand_choice(planets), create_passenger(planets))
-	create_passenger(planets)
+	var time_passed = Time.get_ticks_msec()
+	for i in range(len(planets)):
+		create_passenger(planets)
 
 func create_passenger(planets):
 	var planet1 = 0
@@ -124,3 +143,10 @@ func find_route_recursive(route,index,destination):
 
 func _on_death_timer_timeout():
 	print('game over')
+
+
+func _on_planet_factory_planet_created(planet_name):
+	shown_planet_name = planet_name
+	# Show the planet name for 5 seconds.
+	await get_tree().create_timer(5.0).timeout
+	shown_planet_name = ""
