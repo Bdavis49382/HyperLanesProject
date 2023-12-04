@@ -13,6 +13,9 @@ func _ready():
 	create_planet("Earth",[0,0])
 	create_random_planet(zones[0])
 	create_random_planet(zones[0])
+	# var earth = get_tree().get_nodes_in_group("planets")[0]
+	# if earth:
+	# 	earth.flash()
 
 	
 
@@ -47,11 +50,12 @@ func create_planet(planet_name,position):
 	var new_planet = Planet.instantiate()
 	new_planet.planetName = planet_name
 	new_planet.planetSize = 2
-	var r = randi_range(0,255)
-	var g = randi_range(0,255)
-	var b = randi_range(0,255)
+	var r = randi_range(10,255)
+	var g = randi_range(10,255)
+	var b = randi_range(10,255)
 	
 	new_planet.get_node("Earth").self_modulate = Color8(r,g,b,255)
+	new_planet.get_node("Earth").rotation = randi_range(0,360)
 	
 	new_planet.position = Vector2(position[0],position[1])
 	new_planet.add_to_group("planets")
@@ -64,7 +68,7 @@ func create_zone():
 	var zone = []
 	while not valid:
 		valid = true
-		var dist = randi_range(1000,2500)
+		var dist = randi_range(500 + current_zone*100,1500+current_zone*200)
 		var dist_x = randi_range(0,dist)
 		var dist_y = dist - dist_x
 		if randi_range(0,100) < 50:

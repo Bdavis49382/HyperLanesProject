@@ -12,13 +12,20 @@ func _process(delta):
 	get_node("../Camera/HUD/Money").text = "$" + str(money)
 	var over_planets = check_planets_capacity()
 	if len(over_planets):
-		get_node("../Camera/HUD/Message").text = over_planets[0].planetName + " is over capacity! " + str(int($DeathTimer.time_left)) + " seconds left"
+		var scarystr = ""
+		for over_planet in over_planets:
+			scarystr += over_planet.planetName + " is over capacity!\n"
+			over_planet.flash()
+		get_node("../Camera/HUD/Message").text = scarystr + str(int($DeathTimer.time_left)) + " seconds left"
 		if $DeathTimer.is_stopped():
 			$DeathTimer.start()
 	else:
 		if not $DeathTimer.is_stopped():
 			$DeathTimer.stop()
-		# print(shown_planet_name)
+		for planet in get_tree().get_nodes_in_group("planets"):
+			if not planet.get_node("Flash").is_stopped():
+				planet.get_node("Flash").stop()
+				planet.reset_color()
 		if shown_planet_name == '':
 			get_node("../Camera/HUD/Message").text = "Everything is running smoothly"
 		else:
@@ -120,10 +127,8 @@ func create_passenger(planets):
 
 func find_route(route,destination):
 	route = find_route_recursive(route,0,destination)
-	if route[-1] != destination:
-		return [route[0]]
-	else:
-		return route
+	
+	return route
 
 func find_route_recursive(route,index,destination):
 	if route[-1] == destination:

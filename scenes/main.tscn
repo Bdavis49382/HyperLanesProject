@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdt7vdwq7j6jx"]
+[gd_scene load_steps=14 format=3 uid="uid://bdt7vdwq7j6jx"]
 
 [ext_resource type="PackedScene" uid="uid://bjqx2ubiu4wtm" path="res://scenes/planet.tscn" id="1_3sbwt"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_p26hy"]
@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bctb66s476k8l" path="res://scenes/hud.tscn" id="6_ny6xt"]
 [ext_resource type="PackedScene" uid="uid://bfycsbay3v70v" path="res://scenes/economy.tscn" id="6_rfoa1"]
 [ext_resource type="Script" path="res://Scripts/planetFactory.gd" id="8_4rnif"]
+[ext_resource type="AudioStream" uid="uid://b0lclue1tkujr" path="res://Assets/Checking Manifest.mp3" id="9_x30so"]
+[ext_resource type="Script" path="res://Scripts/MusicPlayer.gd" id="10_hksoa"]
+[ext_resource type="AudioStream" uid="uid://bj3j45y4tnfmp" path="res://Assets/Crash Landing.mp3" id="11_iqqy3"]
+[ext_resource type="AudioStream" uid="uid://cantvytfsxoo0" path="res://Assets/DOS-88 - Far away.mp3" id="12_fenjv"]
+[ext_resource type="AudioStream" uid="uid://3uttbmkyr5fd" path="res://Assets/Smooth Sailing.mp3" id="13_svgv2"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_p26hy")
@@ -31,5 +36,14 @@ script = ExtResource("2_b0krl")
 [node name="HUD" parent="Camera" instance=ExtResource("6_ny6xt")]
 layer = -1
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_x30so")
+autoplay = true
+script = ExtResource("10_hksoa")
+streams = Array[AudioStream]([ExtResource("9_x30so"), ExtResource("11_iqqy3"), ExtResource("12_fenjv"), ExtResource("13_svgv2")])
+
+[node name="SongTimer" type="Timer" parent="MusicPlayer"]
+
 [connection signal="planet_created" from="planetFactory" to="Economy" method="_on_planet_factory_planet_created"]
 [connection signal="timeout" from="planetFactory/planetSpawnTimer" to="planetFactory" method="_on_planet_spawn_timer_timeout"]
+[connection signal="timeout" from="MusicPlayer/SongTimer" to="MusicPlayer" method="_on_song_timer_timeout"]

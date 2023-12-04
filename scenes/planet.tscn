@@ -23,4 +23,7 @@ offset_bottom = 15.1875
 visible = false
 position = Vector2(122, 70)
 
+[node name="Flash" type="Timer" parent="."]
+
 [connection signal="gui_input" from="Earth/Control" to="." method="_on_control_gui_input"]
+[connection signal="timeout" from="Flash" to="." method="_on_flash_timeout"]

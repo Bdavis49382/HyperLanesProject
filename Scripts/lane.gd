@@ -19,7 +19,7 @@ func _process(delta):
 	for ship in $Path2D.get_children():
 		ship.move(level*2)
 	$LaneBox.ships = str(ships) + " (" + str(econ.calc_ship_cost(ships)) + ")"
-	$LaneBox.level = str(level) + " (" + str(econ.calc_upgrade_cost(planet1,planet2,level) / 2) + ")"
+	$LaneBox.level = str(level) + " (" + str(econ.calc_upgrade_cost(planet1,planet2,level)) + ")"
 
 
 
@@ -51,3 +51,4 @@ func _on_lane_box_add_ship():
 func _on_lane_box_upgrade():
 	if econ.upgrade_route(planet1,planet2,level):
 		level += 1
+		

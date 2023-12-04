@@ -67,9 +67,9 @@ func _process(delta):
 	$ProgressBar.value = percentage
 	if percentage > 90 and not red:
 		red = true
-		
 	if red and percentage < 90:
 		red = false
+		$ProgressBar.add_theme_color_override("font_color",Color(1,1,1))
 
 	if red:
 		$ProgressBar.add_theme_color_override("font_color",Color(1,0,0))
